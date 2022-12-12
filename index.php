@@ -17,64 +17,19 @@ titolo, prezzo, icona della categoria ed il tipo di articolo che si sta visualiz
 
 <?php
 
+include_once __DIR__ . '/Models/Category.php';
+include_once __DIR__ . '/Models/Type.php';
+include_once __DIR__ . '/Models/Product.php';
 
-class Product
-{
-    public $name;
-    public $category;
-    protected $price;
-    public $type;
-    public $image;
-
-    public function __construct($name, Category $category, $price, Type $type, $image)
-    {
-        $this->name = $name;
-        $this->category = $category;
-        $this->image = $image;
-        $this->price = $price . ' €';
-    }
-
-    public function setPrice($price)
-    {
-        $this->price = $price;
-    }
-
-    public function getPrice()
-    {
-        return $this->price;
-    }
-}
-
-class Category
-{
-    public $name;
-
-    public function __construct($name)
-    {
-        $this->name = $name;
-    }
-}
-
-class type
-{
-    public $type;
-
-    public function __construct($type)
-    {
-        $this->type = $type;
-    }
-}
 
 // $food = new Product('croccantini', new Category('dog'), '13,99', 'picsum');
 // var_dump($food);
-
 
 $cardProduct = [
     $food = new Product('croccantini', new Category('dog'), '14,99', new Type('cibo'), 'https://picsum.photos/200/300'),
     $toy = new Product('pallina', new Category('cat'), '8,99', new Type('gioco'), 'https://picsum.photos/200/300'),
     $bed = new Product('cuccia', new Category('dog'), '89,95', new Type('cuccia'), 'https://picsum.photos/200/300')
 ]
-
 ?>
 
 <!DOCTYPE html>
@@ -101,7 +56,6 @@ $cardProduct = [
                         <div class="card-body">
                             <h5 class="card-title text-capitalize"> <?= $product->name ?> </h5>
                             <?php if ($product->category->name == 'dog') : ?>
-
                                 <h6 class="card-subtitle mb-2 text-muted "> <i class="fa-solid fa-dog"></i> </h6>
                             <?php else : ?>
                                 <h6 class="card-subtitle mb-2 text-muted "> <i class="fa-solid fa-cat"></i> </h6>
